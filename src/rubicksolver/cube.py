@@ -1,5 +1,5 @@
 from .colors import Color
-
+from .colors import ANSI_BG_CODES, RESET
 
 class Cube:
 
@@ -12,17 +12,19 @@ class Cube:
         "R": Color.RED,
     }
 
+    STICKER = "   "
+
     def __init__(self):
         self.faces = {}
         for face, color in self.COLORS_OF_SOLVED_RUBICK.items():
             self.faces[face] = [[color for _ in range(3)] for _ in range(3)]
 
     def _draw_row(self, row):
-        return " ".join(color.value for color in row)
+        return " ".join(f"{ANSI_BG_CODES[color]}{self.STICKER}{RESET}" for color in row)
 
     def __str__(self):
         lines = []
-        indent = " " * (len(self._draw_row(self.faces["U"][0])) + 1)
+        indent = ((self.STICKER) * 3) + " " + "  " # Пробел между гранями + 2 пробела межжду квадратиками..
         for row in self.faces["U"]:
             lines.append(indent + self._draw_row(row))
         for i in range(3):
@@ -40,8 +42,5 @@ class Cube:
 
 if __name__ == "__main__":
     cube = Cube()
-    print(cube)
-    cube.faces["U"][0][0] = Color.RED
-    print()
     print(cube)
 
