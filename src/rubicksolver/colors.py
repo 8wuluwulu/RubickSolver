@@ -5,5 +5,6 @@ class Color(Enum):
     YELLOW = "Y"
     GREEN = "G"
     BLUE = "B"
-    ORANGE= "O"
+    ORANGE = "O"
     RED = "R"
+    
