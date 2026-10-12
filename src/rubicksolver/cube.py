@@ -9,7 +9,7 @@ class Cube:
         "F": Color.GREEN,
         "B": Color.BLUE,
         "L": Color.ORANGE,
-        "R": Color.RED,
+        "R": Color.RED
     }
 
     STICKER = "   "
@@ -47,6 +47,18 @@ class Cube:
                 new_face[i][j] = old_face[2 - j][i]
 
         self.faces[face] = new_face
+
+    def move_U(self):
+        self._rotate_face("U")
+        old_l = self.faces["L"][0]
+        old_f = self.faces["F"][0]
+        old_r = self.faces["R"][0]
+        old_b = self.faces["B"][0]
+
+        self.faces["L"][0] = old_f
+        self.faces["F"][0] = old_r
+        self.faces["R"][0] = old_b
+        self.faces["B"][0] = old_l
         
 
 
@@ -54,11 +66,5 @@ class Cube:
 if __name__ == "__main__":
     cube = Cube()
     print(cube)
-    print()
-    cube.faces["U"][0][0] = Color.RED
+    cube.move_U()
     print(cube)
-    print()
-    cube._rotate_face("U")
-    print(cube)
-
-
