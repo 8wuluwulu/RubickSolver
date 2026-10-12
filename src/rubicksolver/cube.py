@@ -59,6 +59,18 @@ class Cube:
         self.faces["F"][0] = old_r
         self.faces["R"][0] = old_b
         self.faces["B"][0] = old_l
+
+    def move_D(self):
+        self._rotate_face("D")
+        old_l = self.faces["L"][2]
+        old_f = self.faces["F"][2]
+        old_r = self.faces["R"][2]
+        old_b = self.faces["B"][2]
+
+        self.faces["L"][2] = old_b
+        self.faces["F"][2] = old_l
+        self.faces["R"][2] = old_f
+        self.faces["B"][2] = old_r
         
 
 
@@ -66,5 +78,5 @@ class Cube:
 if __name__ == "__main__":
     cube = Cube()
     print(cube)
-    cube.move_U()
+    cube.move_D()
     print(cube)
