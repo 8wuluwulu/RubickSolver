@@ -39,8 +39,26 @@ class Cube:
 
         return "\n".join(lines)
 
+    def _rotate_face(self, face):
+        old_face = self.faces[face]
+        new_face = [[None for _ in range(3)] for _ in range(3)]
+        for i in range(3):
+            for j in range(3):
+                new_face[i][j] = old_face[2 - j][i]
+
+        self.faces[face] = new_face
+        
+
+
 
 if __name__ == "__main__":
     cube = Cube()
     print(cube)
+    print()
+    cube.faces["U"][0][0] = Color.RED
+    print(cube)
+    print()
+    cube._rotate_face("U")
+    print(cube)
+
 
