@@ -84,6 +84,18 @@ class Cube:
         self._set_col("D", 2, old_b[::-1])
         self._set_col("F", 2, old_d)
 
+    def move_L(self):
+        self._rotate_face("L")
+        old_f = self._get_col("F", 0)
+        old_u = self._get_col("U", 0)
+        old_d = self._get_col("D", 0)
+        old_b = self._get_col("B", 2)
+
+        self._set_col("D", 0, old_f)
+        self._set_col("F", 0, old_u)
+        self._set_col("B", 2, old_d[::-1])
+        self._set_col("U", 0, old_b[::-1])
+
     def _get_col(self, face, j):
         col = []
         for i in range(3):
@@ -100,5 +112,5 @@ class Cube:
 if __name__ == "__main__":
     cube = Cube()
     print(cube)
-    cube.move_R()
+    cube.move_L()
     print(cube)
